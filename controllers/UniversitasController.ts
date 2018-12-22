@@ -3,7 +3,7 @@ import { Universitas } from "../models/Universitas"
 
 
 export class UniversitasController {
-    public show(req: Request, res: Response){
-        Universitas.findById(req.params.id).then((data) => res.json(data));
+    public index(req: Request, res: Response){
+        Universitas.find({}).then((data) => res.json(data));
     }
 }

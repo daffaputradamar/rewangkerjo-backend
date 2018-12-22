@@ -5,6 +5,6 @@ const router = Router()
 const controller = new UniversitasController()
 
 
-router.get('/:id', controller.show)
+router.get('/', controller.index)
 
 export const UniversitasRouter = router
