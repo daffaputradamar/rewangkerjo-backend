@@ -10,6 +10,7 @@ import { MediaPartnerRouter } from './routers/MediaPartnerRouter'
 import { UserRouter } from './routers/UserRouter'
 import { TimelineRouter } from './routers/TimelineRouter'
 import { HadiahRouter } from './routers/HadiahRouter'
+import { UniversitasRouter } from './routers/UniversitasRouter'
 
 const app = express()
 
@@ -24,5 +25,6 @@ app.use('/mediaPartner', MediaPartnerRouter)
 app.use('/timeline', TimelineRouter)
 app.use('/users', UserRouter)
 app.use('/hadiah', HadiahRouter)
+app.use('/universitas', UniversitasRouter)
 
 app.listen(3000, () => console.log('service listening'))
