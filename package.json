@@ -24,6 +24,7 @@
     "@types/express": "^4.16.0",
     "@types/mongoose": "^5.3.5",
     "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "mongoose": "^5.3.15",
     "mongoose-seed": "^0.5.1",
