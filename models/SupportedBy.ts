@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 
 const SupportedBySchema = new Schema({
-  name: {
+  nama: {
     type: String
   },
   logo: {
