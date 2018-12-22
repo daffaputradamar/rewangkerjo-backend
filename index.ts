@@ -4,6 +4,7 @@ import { SampleRouter } from './routers/SampleRouter'
 import { SupportedByRouter } from './routers/SupportedByRouter'
 import { KontakRouter } from './routers/KontakRouter'
 import { MediaPartnerRouter } from './routers/MediaPartnerRouter';
+import { UserRouter } from "./routers/UserRouter"
 
 const app = express()
 
@@ -14,5 +15,6 @@ app.use('/sample', SampleRouter)
 app.use('/supportedBy', SupportedByRouter)
 app.use('/kontak', KontakRouter)
 app.use('/mediaPartner', MediaPartnerRouter)
+app.use("/users", UserRouter)
 
-app.listen(3000, () => console.log('service listening'))
+app.listen(3000, () => console.log("service listening"))
