@@ -1,5 +1,5 @@
-import { Request, Response } from 'express'
-import { Kontak } from '../models/Kontak'
+import { Request, Response } from "express"
+import { Kontak } from "../models/Kontak"
 
 export class KontakController {
   index(req: Request, res: Response) {
