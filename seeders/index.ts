@@ -25,7 +25,7 @@ seed(MediaPartner, mediaPartnerData)
 
 // seeding Universitas
 import { Universitas } from '../models/Universitas'
-import universitasData from './Universitas'
+import universitasData from './universitas'
 seed(Universitas, universitasData)
 
 //seeding User
