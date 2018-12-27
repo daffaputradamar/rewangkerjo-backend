@@ -35,6 +35,6 @@ seed(User, userData)
 
 
 //seeding Hadiah
-import { Hadiah } from "../models/Hadiah"
-import hadiahData from "./hadiah";
+import { Hadiah } from '../models/Hadiah'
+import hadiahData from './hadiah'
 seed(Hadiah, hadiahData)
