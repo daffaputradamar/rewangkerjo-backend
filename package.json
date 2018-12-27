@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc --watch",
     "start": "node ./build/index.js",
-    "dev": "nodemon ./build/index.js"
+    "dev": "nodemon ./build/index.js",
+    "seed": "node ./build/seeders/index.js"
   },
   "repository": {
     "type": "git",

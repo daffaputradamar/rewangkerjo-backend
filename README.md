@@ -15,3 +15,9 @@ Run server
 ```bash
 npm run dev
 ```
+
+## Seeding
+
+```bash
+npm run seed
+```

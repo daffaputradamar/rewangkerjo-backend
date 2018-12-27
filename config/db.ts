@@ -1,9 +1,11 @@
 import { connect } from 'mongoose'
 
+const connectionString = `mongodb+srv://wri:${
+  process.env.PASSWORD
+}@cluster0-enygr.mongodb.net/test?retryWrites=true`
+
 connect(
-  `mongodb+srv://wri:${
-    process.env.PASSWORD
-  }@cluster0-enygr.mongodb.net/test?retryWrites=true`,
+  connectionString,
   {
     useNewUrlParser: true
   }
