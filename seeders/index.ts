@@ -17,3 +17,8 @@ seed(SupportedBy, supportedByData)
 import { Timeline } from '../models/Timeline'
 import timelineData from './timeline'
 seed(Timeline, timelineData)
+
+// seeding mediaPartner
+import { MediaPartner } from '../models/MediaPartner'
+import mediaPartnerData from './mediaPartner'
+seed(MediaPartner, mediaPartnerData)
