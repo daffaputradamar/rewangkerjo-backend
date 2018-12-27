@@ -6,4 +6,4 @@ const SampleSchema = new Schema({
   }
 })
 
-export const Sample = model('Sample', SampleSchema)
+export const Sample = model('Sample', SampleSchema, 'Sample')

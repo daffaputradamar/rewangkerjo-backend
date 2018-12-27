@@ -1,47 +1,49 @@
 import { Schema, model } from 'mongoose'
-import { ObjectId } from 'bson';
+import { ObjectId } from 'bson'
 
 const TimSchema = new Schema({
   nama: {
     type: String
   },
   universitas_id: {
-      type: ObjectId
+    type: ObjectId
   },
   statusTim: {
-      tahapPertama: {
-          type: Boolean
-      },
-      tahapKedua: {
-          type: Boolean
-      }
+    tahapPertama: {
+      type: Boolean
+    },
+    tahapKedua: {
+      type: Boolean
+    }
   },
   ketua: {
-      _id: {
-          type: ObjectId
-      },
-      noTelp: {
-          type: String
-      }
-  },
-  peserta_id: [{
+    _id: {
       type: ObjectId
-  }],
-  namaAplikasi: {
+    },
+    noTelp: {
       type: String
+    }
+  },
+  peserta_id: [
+    {
+      type: ObjectId
+    }
+  ],
+  namaAplikasi: {
+    type: String
   },
   fileProposal: {
-      type: String
+    type: String
   },
   filePresentasiVideo: {
-      type: String
+    type: String
   },
   fileDemo: {
-      type: String
+    type: String
   },
   fileAplikasi: {
-      type: String
+    type: String
   }
 })
 
-export const Tim = model('Tim', TimSchema)
+export const Tim = model('Tim', TimSchema, 'Tim')

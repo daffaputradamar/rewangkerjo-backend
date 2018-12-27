@@ -1,12 +1,12 @@
-import { Schema, model  } from 'mongoose'
+import { Schema, model } from 'mongoose'
 
 const HadiahSchema = new Schema({
-    judul: {
-        type: String
-    },
-    nominal: {
-        type: Number
-    }
+  judul: {
+    type: String
+  },
+  nominal: {
+    type: Number
+  }
 })
 
-export const Hadiah = model('Hadiah', HadiahSchema)
+export const Hadiah = model('Hadiah', HadiahSchema, 'Hadiah')

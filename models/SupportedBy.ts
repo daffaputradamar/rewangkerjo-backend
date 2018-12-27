@@ -9,4 +9,8 @@ const SupportedBySchema = new Schema({
   }
 })
 
-export const SupportedBy = model('SupportedBy', SupportedBySchema)
+export const SupportedBy = model(
+  'SupportedBy',
+  SupportedBySchema,
+  'SupportedBy'
+)

@@ -7,12 +7,12 @@ const TimelineSchema = new Schema({
   tgl_mulai: {
     type: Date
   },
-  tgl_selesai:{
-      type:Date
+  tgl_selesai: {
+    type: Date
   },
-  deskripsi:{
-      type:String
+  deskripsi: {
+    type: String
   }
 })
 
-export const Timeline = model('Timeline', TimelineSchema)
+export const Timeline = model('Timeline', TimelineSchema, 'Timeline')

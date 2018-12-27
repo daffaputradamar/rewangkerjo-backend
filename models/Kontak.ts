@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose"
+import { Schema, model } from 'mongoose'
 
 const KontakSchema = new Schema({
   nama: {
@@ -9,4 +9,4 @@ const KontakSchema = new Schema({
   }
 })
 
-export const Kontak = model("Kontak", KontakSchema)
+export const Kontak = model('Kontak', KontakSchema, 'Kontak')
