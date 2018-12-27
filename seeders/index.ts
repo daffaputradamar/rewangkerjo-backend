@@ -30,5 +30,5 @@ seed(Universitas, universitasData)
 
 //seeding User
 import { User } from "../models/User"
-import user from './user'
-seed(User, user)
+import userData from './user'
+seed(User, userData)
