@@ -22,3 +22,9 @@ seed(Timeline, timelineData)
 import { MediaPartner } from '../models/MediaPartner'
 import mediaPartnerData from './mediaPartner'
 seed(MediaPartner, mediaPartnerData)
+
+// seeding Universitas
+
+import { Universitas } from '../models/Universitas'
+import universitasData from './Universitas'
+seed(Universitas, universitasData)
