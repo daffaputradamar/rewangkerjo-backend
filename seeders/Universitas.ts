@@ -10,5 +10,8 @@ export default[
     },
     {
         nama : 'Universitas Muhammadiyah Malang'
+    },
+    {
+        nama : 'Universitas Islam Negeri Malang'
     }
 ]
