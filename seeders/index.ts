@@ -32,3 +32,9 @@ seed(Universitas, universitasData)
 import { User } from "../models/User"
 import userData from './user'
 seed(User, userData)
+
+
+//seeding Hadiah
+import { Hadiah } from "../models/Hadiah"
+import hadiahData from "./hadiah";
+seed(Hadiah, hadiahData)
