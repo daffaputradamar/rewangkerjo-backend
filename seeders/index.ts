@@ -24,7 +24,11 @@ import mediaPartnerData from './mediaPartner'
 seed(MediaPartner, mediaPartnerData)
 
 // seeding Universitas
-
 import { Universitas } from '../models/Universitas'
 import universitasData from './Universitas'
 seed(Universitas, universitasData)
+
+//seeding User
+import { User } from "../models/User"
+import user from './user'
+seed(User, user)
