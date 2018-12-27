@@ -1,12 +1,12 @@
 import { Schema, model } from 'mongoose'
-import { ObjectId } from 'bson'
 
 const TimSchema = new Schema({
   nama: {
     type: String
   },
-  universitas_id: {
-    type: ObjectId
+  universitas: {
+    type: Schema.Types.ObjectId,
+    ref: 'Universitas'
   },
   statusTim: {
     tahapPertama: {
@@ -17,16 +17,13 @@ const TimSchema = new Schema({
     }
   },
   ketua: {
-    _id: {
-      type: ObjectId
-    },
-    noTelp: {
-      type: String
-    }
+    type: Schema.Types.ObjectId,
+    ref: 'Peserta'
   },
-  peserta_id: [
+  peserta: [
     {
-      type: ObjectId
+      type: Schema.Types.ObjectId,
+      ref: 'Peserta'
     }
   ],
   namaAplikasi: {

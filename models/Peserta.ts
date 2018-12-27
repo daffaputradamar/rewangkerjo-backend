@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, Mongoose } from 'mongoose'
 
 const PesertaSchema = new Schema({
   nama: {
@@ -13,8 +13,9 @@ const PesertaSchema = new Schema({
   foto: {
     type: String
   },
-  user_id: {
-    type: String
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
 
