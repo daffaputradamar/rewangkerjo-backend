@@ -38,3 +38,8 @@ seed(User, userData)
 import { Hadiah } from '../models/Hadiah'
 import hadiahData from './hadiah'
 seed(Hadiah, hadiahData)
+
+//seeding Tim
+import { Tim } from '../models/Tim'
+import timData from './tim'
+seed(Tim, timData)
