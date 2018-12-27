@@ -12,3 +12,8 @@ function seed(model: Model<Document, {}>, data: any[]) {
 import { SupportedBy } from '../models/SupportedBy'
 import supportedByData from './supportedBy'
 seed(SupportedBy, supportedByData)
+
+// seeding timeline
+import { Timeline } from '../models/Timeline'
+import timelineData from './timeline'
+seed(Timeline, timelineData)
