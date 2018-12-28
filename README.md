@@ -2,17 +2,10 @@
 
 Using express and typescript
 
-## How to use
-
-Compile typescript to javascript
+## Development
 
 ```bash
-npm run build
-```
-
-Run server
-
-```bash
+npm install
 npm run dev
 ```
 
