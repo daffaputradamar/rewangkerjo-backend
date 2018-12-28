@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { IKontak } from '../interfaces'
 
 const KontakSchema = new Schema({
   nama: {
@@ -9,4 +10,4 @@ const KontakSchema = new Schema({
   }
 })
 
-export const Kontak = model('Kontak', KontakSchema, 'Kontak')
+export const Kontak = model<IKontak>('Kontak', KontakSchema, 'Kontak')

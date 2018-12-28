@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { IMediaPartner } from '../interfaces'
 
 const MediaPartnerSchema = new Schema({
   nama: {
@@ -9,7 +10,7 @@ const MediaPartnerSchema = new Schema({
   }
 })
 
-export const MediaPartner = model(
+export const MediaPartner = model<IMediaPartner>(
   'MediaPartner',
   MediaPartnerSchema,
   'MediaPartner'

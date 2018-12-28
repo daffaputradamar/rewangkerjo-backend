@@ -1,4 +1,5 @@
 import { Schema, model, Mongoose } from 'mongoose'
+import { IPeserta } from '../interfaces'
 
 const PesertaSchema = new Schema({
   nama: {
@@ -7,7 +8,7 @@ const PesertaSchema = new Schema({
   nim: {
     type: String
   },
-  fotoKtp: {
+  fotoKtm: {
     type: String
   },
   foto: {
@@ -19,4 +20,4 @@ const PesertaSchema = new Schema({
   }
 })
 
-export const Peserta = model('Peserta', PesertaSchema, 'Peserta')
+export const Peserta = model<IPeserta>('Peserta', PesertaSchema, 'Peserta')

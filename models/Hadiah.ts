@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { IHadiah } from '../interfaces'
 
 const HadiahSchema = new Schema({
   judul: {
@@ -9,4 +10,4 @@ const HadiahSchema = new Schema({
   }
 })
 
-export const Hadiah = model('Hadiah', HadiahSchema, 'Hadiah')
+export const Hadiah = model<IHadiah>('Hadiah', HadiahSchema, 'Hadiah')

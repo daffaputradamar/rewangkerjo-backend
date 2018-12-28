@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { ISupportedBy } from '../interfaces'
 
 const SupportedBySchema = new Schema({
   nama: {
@@ -9,7 +10,7 @@ const SupportedBySchema = new Schema({
   }
 })
 
-export const SupportedBy = model(
+export const SupportedBy = model<ISupportedBy>(
   'SupportedBy',
   SupportedBySchema,
   'SupportedBy'

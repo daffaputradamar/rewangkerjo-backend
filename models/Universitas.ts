@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { IUniversitas } from '../interfaces'
 
 const UniversitasSchema = new Schema({
   nama: {
@@ -6,7 +7,7 @@ const UniversitasSchema = new Schema({
   }
 })
 
-export const Universitas = model(
+export const Universitas = model<IUniversitas>(
   'Universitas',
   UniversitasSchema,
   'Universitas'

@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { ITimeline } from '../interfaces'
 
 const TimelineSchema = new Schema({
   nama: {
@@ -15,4 +16,4 @@ const TimelineSchema = new Schema({
   }
 })
 
-export const Timeline = model('Timeline', TimelineSchema, 'Timeline')
+export const Timeline = model<ITimeline>('Timeline', TimelineSchema, 'Timeline')

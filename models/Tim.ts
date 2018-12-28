@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { ITim } from '../interfaces'
 
 const TimSchema = new Schema({
   nama: {
@@ -43,4 +44,4 @@ const TimSchema = new Schema({
   }
 })
 
-export const Tim = model('Tim', TimSchema, 'Tim')
+export const Tim = model<ITim>('Tim', TimSchema, 'Tim')
