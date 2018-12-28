@@ -14,3 +14,8 @@ npm run dev
 ```bash
 npm run seed
 ```
+
+## Enable Tslint on VSCODE
+
+1. Install prettier and tslint extention
+2. Enable tslint integration for prettier on settings

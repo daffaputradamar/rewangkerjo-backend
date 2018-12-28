@@ -1,4 +1,4 @@
-import { connect } from 'mongoose'
+import { connect } from "mongoose"
 
 const connectionString = `mongodb+srv://wri:${
   process.env.PASSWORD
@@ -7,8 +7,8 @@ const connectionString = `mongodb+srv://wri:${
 connect(
   connectionString,
   {
-    useNewUrlParser: true
-  }
+    useNewUrlParser: true,
+  },
 ).then(() => {
-  console.log('Connected to mongodb')
+  console.log("Connected to mongodb")
 })

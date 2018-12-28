@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose'
+import { model, Schema } from "mongoose"
 
 const SampleSchema = new Schema({
   sampleField: {
-    type: String
-  }
+    type: String,
+  },
 })
 
-export const Sample = model('Sample', SampleSchema, 'Sample')
+export const Sample = model("Sample", SampleSchema, "Sample")

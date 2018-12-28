@@ -1,23 +1,23 @@
-import { Schema, model, Mongoose } from 'mongoose'
-import { IPeserta } from '../interfaces'
+import { model, Schema } from "mongoose"
+import { IPeserta } from "../interfaces"
 
 const PesertaSchema = new Schema({
   nama: {
-    type: String
+    type: String,
   },
   nim: {
-    type: String
+    type: String,
   },
   ktm: {
-    type: String
+    type: String,
   },
   foto: {
-    type: String
+    type: String,
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
-  }
+    ref: "User",
+  },
 })
 
-export const Peserta = model<IPeserta>('Peserta', PesertaSchema, 'Peserta')
+export const Peserta = model<IPeserta>("Peserta", PesertaSchema, "Peserta")

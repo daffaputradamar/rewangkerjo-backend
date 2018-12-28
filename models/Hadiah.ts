@@ -1,13 +1,13 @@
-import { Schema, model } from 'mongoose'
-import { IHadiah } from '../interfaces'
+import { model, Schema } from "mongoose"
+import { IHadiah } from "../interfaces"
 
 const HadiahSchema = new Schema({
   judul: {
-    type: String
+    type: String,
   },
   nominal: {
-    type: Number
-  }
+    type: Number,
+  },
 })
 
-export const Hadiah = model<IHadiah>('Hadiah', HadiahSchema, 'Hadiah')
+export const Hadiah = model<IHadiah>("Hadiah", HadiahSchema, "Hadiah")

@@ -1,4 +1,4 @@
-import { Document } from 'mongoose'
+import { Document } from "mongoose"
 
 interface IHadiah extends Document {
   judul: string
@@ -73,5 +73,5 @@ export {
   ITim,
   ITimeline,
   IUniversitas,
-  IUser
+  IUser,
 }

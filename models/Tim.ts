@@ -1,47 +1,47 @@
-import { Schema, model } from 'mongoose'
-import { ITim } from '../interfaces'
+import { model, Schema } from "mongoose"
+import { ITim } from "../interfaces"
 
 const TimSchema = new Schema({
   nama: {
-    type: String
+    type: String,
   },
   universitas: {
     type: Schema.Types.ObjectId,
-    ref: 'Universitas'
+    ref: "Universitas",
   },
   statusTim: {
     tahapPertama: {
-      type: Boolean
+      type: Boolean,
     },
     tahapKedua: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   ketua: {
     type: Schema.Types.ObjectId,
-    ref: 'Peserta'
+    ref: "Peserta",
   },
   peserta: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Peserta'
-    }
+      ref: "Peserta",
+    },
   ],
   namaAplikasi: {
-    type: String
+    type: String,
   },
   fileProposal: {
-    type: String
+    type: String,
   },
   filePresentasiVideo: {
-    type: String
+    type: String,
   },
   fileDemo: {
-    type: String
+    type: String,
   },
   fileAplikasi: {
-    type: String
-  }
+    type: String,
+  },
 })
 
-export const Tim = model<ITim>('Tim', TimSchema, 'Tim')
+export const Tim = model<ITim>("Tim", TimSchema, "Tim")

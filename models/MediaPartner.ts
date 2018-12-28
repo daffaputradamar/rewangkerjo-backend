@@ -1,17 +1,17 @@
-import { Schema, model } from 'mongoose'
-import { IMediaPartner } from '../interfaces'
+import { model, Schema } from "mongoose"
+import { IMediaPartner } from "../interfaces"
 
 const MediaPartnerSchema = new Schema({
   nama: {
-    type: String
+    type: String,
   },
   logo: {
-    type: String
-  }
+    type: String,
+  },
 })
 
 export const MediaPartner = model<IMediaPartner>(
-  'MediaPartner',
+  "MediaPartner",
   MediaPartnerSchema,
-  'MediaPartner'
+  "MediaPartner",
 )

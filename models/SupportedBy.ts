@@ -1,17 +1,17 @@
-import { Schema, model } from 'mongoose'
-import { ISupportedBy } from '../interfaces'
+import { model, Schema } from "mongoose"
+import { ISupportedBy } from "../interfaces"
 
 const SupportedBySchema = new Schema({
   nama: {
-    type: String
+    type: String,
   },
   logo: {
-    type: String
-  }
+    type: String,
+  },
 })
 
 export const SupportedBy = model<ISupportedBy>(
-  'SupportedBy',
+  "SupportedBy",
   SupportedBySchema,
-  'SupportedBy'
+  "SupportedBy",
 )

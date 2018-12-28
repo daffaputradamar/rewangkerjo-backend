@@ -1,13 +1,13 @@
-import { Schema, model } from 'mongoose'
-import { IKontak } from '../interfaces'
+import { model, Schema } from "mongoose"
+import { IKontak } from "../interfaces"
 
 const KontakSchema = new Schema({
   nama: {
-    type: String
+    type: String,
   },
   telp: {
-    type: String
-  }
+    type: String,
+  },
 })
 
-export const Kontak = model<IKontak>('Kontak', KontakSchema, 'Kontak')
+export const Kontak = model<IKontak>("Kontak", KontakSchema, "Kontak")

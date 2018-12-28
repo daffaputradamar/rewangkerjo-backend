@@ -1,19 +1,23 @@
-import { Schema, model } from 'mongoose'
-import { ITimeline } from '../interfaces'
+import { model, Schema } from "mongoose"
+import { ITimeline } from "../interfaces"
 
 const TimelineSchema = new Schema({
   nama: {
-    type: String
+    type: String,
   },
   tgl_mulai: {
-    type: Date
+    type: Date,
   },
   tgl_selesai: {
-    type: Date
+    type: Date,
   },
   deskripsi: {
-    type: String
-  }
+    type: String,
+  },
 })
 
-export const Timeline = model<ITimeline>('Timeline', TimelineSchema, 'Timeline')
+export const Timeline = model<ITimeline>(
+  "Timeline",
+  TimelineSchema,
+  "Timeline",
+)

@@ -4,7 +4,7 @@ export default [
     universitas: null,
     statusTim: {
       tahapPertama: true,
-      tahapKedua: true
+      tahapKedua: true,
     },
     ketua: null,
     peserta: [],
@@ -14,14 +14,14 @@ export default [
     filePresentasiVideo: "https://www.youtube.com/watch?v=hwsdiU5SGas",
     fileDemo: "https://www.youtube.com/watch?v=hwsdiU5SGas",
     fileAplikasi:
-      "https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=578721"
+      "https://www.apkmirror.com/wp-content/themes/APKMirror/download.php?id=578721",
   },
   {
     nama: "Squid Team",
     universitas: null,
     statusTim: {
       tahapPertama: true,
-      tahapKedua: true
+      tahapKedua: true,
     },
     ketua: null,
     peserta: [],
@@ -31,14 +31,14 @@ export default [
     filePresentasiVideo: "https://www.youtube.com/watch?v=hYnuRzaI1JA",
     fileDemo: "https://www.youtube.com/watch?v=hYnuRzaI1JA",
     fileAplikasi:
-      "https://www.apkmonk.com/download-app/com.git.mami.kos/4_com.git.mami.kos_2018-12-20.apk"
+      "https://www.apkmonk.com/download-app/com.git.mami.kos/4_com.git.mami.kos_2018-12-20.apk",
   },
   {
     nama: "Tim Sarjana",
     universitas: null,
     statusTim: {
       tahapPertama: true,
-      tahapKedua: true
+      tahapKedua: true,
     },
     ketua: null,
     peserta: [],
@@ -48,6 +48,6 @@ export default [
     filePresentasiVideo: "https://www.youtube.com/watch?v=hwsdiU5SGas",
     fileDemo: "https://www.youtube.com/watch?v=hwsdiU5SGas",
     fileAplikasi:
-      "https://www.apkmonk.com/download-app/com.kai.kaiticketing/4_com.kai.kaiticketing_2018-11-30.apk"
-  }
-];
+      "https://www.apkmonk.com/download-app/com.kai.kaiticketing/4_com.kai.kaiticketing_2018-11-30.apk",
+  },
+]

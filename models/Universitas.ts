@@ -1,14 +1,14 @@
-import { Schema, model } from 'mongoose'
-import { IUniversitas } from '../interfaces'
+import { model, Schema } from "mongoose"
+import { IUniversitas } from "../interfaces"
 
 const UniversitasSchema = new Schema({
   nama: {
-    type: String
-  }
+    type: String,
+  },
 })
 
 export const Universitas = model<IUniversitas>(
-  'Universitas',
+  "Universitas",
   UniversitasSchema,
-  'Universitas'
+  "Universitas",
 )
