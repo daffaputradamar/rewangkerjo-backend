@@ -11,8 +11,8 @@ const UserSchema = new Schema({
   password: {
     type: String
   },
-  level: {
-    type: String
+  isAdmin: {
+    type: Boolean
   }
 })
 
