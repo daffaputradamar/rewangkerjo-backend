@@ -8,7 +8,7 @@ const PesertaSchema = new Schema({
   nim: {
     type: String
   },
-  fotoKtm: {
+  ktm: {
     type: String
   },
   foto: {

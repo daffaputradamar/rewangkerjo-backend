@@ -18,7 +18,7 @@ interface IMediaPartner extends Document {
 interface IPeserta extends Document {
   nama: string
   nim: string
-  fotoKtm: string
+  ktm: string
   foto: string
   user: string
 }

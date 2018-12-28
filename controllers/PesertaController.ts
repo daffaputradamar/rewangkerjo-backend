@@ -21,11 +21,11 @@ export class PesertaController {
 
   public async updateKtm(req: Request, res: Response) {
     const peserta = await Peserta.findById(req.params._id)
-    if (peserta!.fotoKtm) fs.unlinkSync(peserta!.fotoKtm!)
+    if (peserta!.ktm) fs.unlinkSync(peserta!.ktm!)
 
     Peserta.findOneAndUpdate(
       { _id: req.params._id },
-      { $set: { fotoKtm: req.file.path } },
+      { $set: { ktm: req.file.path } },
       { new: true }
     ).then(data => res.json(data))
   }
