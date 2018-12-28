@@ -33,8 +33,17 @@ import { User } from "../models/User"
 import userData from './user'
 seed(User, userData)
 
-
 //seeding Hadiah
 import { Hadiah } from '../models/Hadiah'
 import hadiahData from './hadiah'
 seed(Hadiah, hadiahData)
+
+//seeding Tim
+import { Tim } from '../models/Tim'
+import timData from './tim'
+seed(Tim, timData)
+
+//seeding Kontak
+import { Kontak } from '../models/Kontak'
+import kontakData from './kontak'
+seed(Kontak, kontakData)
