@@ -16,6 +16,8 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.use('/uploads/ktm', express.static('uploads/ktm'))
+app.use('/uploads/foto', express.static('uploads/foto'))
 
 app.use('/sample', SampleRouter)
 app.use('/supportedBy', SupportedByRouter)
