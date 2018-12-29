@@ -1,11 +1,15 @@
 import { Router } from "express"
 import { UserController } from "../controllers/UserController"
+import { verifyToken } from "../config/verifyToken";
 
 const router = Router()
 const controller = new UserController()
 
 router.get("/", controller.index)
+router.get("/:_id", controller.show)
 router.post("/", controller.store)
+router.post("/login", controller.authenticate)
+router.use(verifyToken)
 router.put("/:_id", controller.update)
 router.delete("/:_id", controller.destroy)
 

@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import { Sample } from "../models/Sample"
+import { verify } from "jsonwebtoken";
 
 export class SampleController {
   public index(req: Request, res: Response) {
@@ -12,6 +13,16 @@ export class SampleController {
 
   public store(req: Request, res: Response) {
     Sample.create(req.body.sample).then((data) => res.json(data))
+  }
+
+  public mysample(req: Request, res: Response) {
+    verify(`${req.token}`, `${process.env.JWT_SECRET}`, (err, payload) => {
+      if (err) res.sendStatus(403)
+      res.json({
+        message: "Sample can be seen",
+        payload
+      })
+    })
   }
 
   public update(req: Request, res: Response) {
