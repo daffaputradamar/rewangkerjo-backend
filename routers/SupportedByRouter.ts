@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { SupportedByController } from "../controllers/SupportedByController"
-import { verifyToken } from "../config/verifyToken";
+import { verifyToken } from "../middlewares/verifyToken"
 
 const router = Router()
 const controller = new SupportedByController()

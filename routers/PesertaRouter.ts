@@ -1,7 +1,7 @@
 import { Router } from "express"
 import multer from "multer"
 import { PesertaController } from "../controllers/PesertaController"
-import { verifyToken } from "../config/verifyToken";
+import { verifyToken } from "../middlewares/verifyToken"
 
 const uploadKtm = multer({ dest: "uploads/ktm/" })
 const uploadFoto = multer({ dest: "uploads/foto/" })
