@@ -7,7 +7,7 @@
     "watch-tsc": "tsc --watch",
     "watch-node": "nodemon ./build/index.js",
     "dev": "concurrently \"npm run watch-tsc\" \"npm run watch-node\"",
-    "start": "node ./build/index.js",
+    "start": "node build/index.js",
     "seed": "tsc && node ./build/seeders/index.js"
   },
   "repository": {
