@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "watch-tsc": "tsc --watch",
-    "watch-node": "nodemon index.js",
-    "dev": "concurrently 'npm run watch-tsc' 'npm run watch-node'",
-    "start": "node index.js",
-    "seed": "tsc && node seeders/index.js"
+    "watch-node": "nodemon ./build/index.js",
+    "dev": "concurrently \"npm run watch-tsc\" \"npm run watch-node\"",
+    "start": "node ./build/index.js",
+    "seed": "tsc && node ./build/seeders/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,8 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.15",
-    "multer": "^1.4.1"
+    "multer": "^1.4.1",
+    "nodemon": "^1.19.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.4",
