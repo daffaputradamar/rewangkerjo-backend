@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch-tsc": "tsc --watch",
-    "watch-node": "nodemon ./build/index.js",
+    "watch-node": "nodemon index.js",
     "dev": "concurrently 'npm run watch-tsc' 'npm run watch-node'",
     "start": "node index.js",
     "seed": "tsc && node seeders/index.js"
