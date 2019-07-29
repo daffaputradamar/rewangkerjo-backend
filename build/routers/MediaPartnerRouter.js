@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var MediaPartnerController_1 = require("../controllers/MediaPartnerController");
+var verifyToken_1 = require("../middlewares/verifyToken");
+var router = express_1.Router();
+var controller = new MediaPartnerController_1.MediaPartnerController();
+router.get("/", controller.index);
+router.use(verifyToken_1.verifyToken);
+router.post("/", controller.store);
+router.delete("/:id", controller.destroy);
+exports.MediaPartnerRouter = router;

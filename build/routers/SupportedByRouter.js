@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var SupportedByController_1 = require("../controllers/SupportedByController");
+var verifyToken_1 = require("../middlewares/verifyToken");
+var router = express_1.Router();
+var controller = new SupportedByController_1.SupportedByController();
+router.get("/", controller.index);
+router.use(verifyToken_1.verifyToken);
+router.post("/", controller.store);
+router.delete("/:_id", controller.destroy);
+exports.SupportedByRouter = router;

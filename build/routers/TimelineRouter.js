@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var TimelineController_1 = require("../controllers/TimelineController");
+var verifyToken_1 = require("../middlewares/verifyToken");
+var router = express_1.Router();
+var controller = new TimelineController_1.TimelineController();
+router.get("/", controller.index);
+router.use(verifyToken_1.verifyToken);
+router.post("/", controller.store);
+router.put("/:_id", controller.update);
+router.delete("/:_id", controller.destroy);
+exports.TimelineRouter = router;

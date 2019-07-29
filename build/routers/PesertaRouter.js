@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var multer_1 = __importDefault(require("multer"));
+var PesertaController_1 = require("../controllers/PesertaController");
+var verifyToken_1 = require("../middlewares/verifyToken");
+var uploadKtm = multer_1.default({ dest: "uploads/ktm/" });
+var uploadFoto = multer_1.default({ dest: "uploads/foto/" });
+var router = express_1.Router();
+var controller = new PesertaController_1.PesertaController();
+router.get("/:idteam", controller.show);
+router.post("/", controller.store);
+router.use(verifyToken_1.verifyToken);
+router.put("/:_id", controller.update);
+router.put("/:_id/ktm", uploadKtm.single("ktm"), controller.updateKtm);
+router.put("/:_id/foto", uploadFoto.single("foto"), controller.updateFoto);
+router.delete("/:_id", controller.destroy);
+exports.PesertaRouter = router;

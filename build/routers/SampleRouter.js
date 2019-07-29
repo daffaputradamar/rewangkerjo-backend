@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var SampleController_1 = require("../controllers/SampleController");
+var verifyToken_1 = require("../middlewares/verifyToken");
+var router = express_1.Router();
+var controller = new SampleController_1.SampleController();
+router.get("/", controller.index);
+router.get("/:_id", controller.show);
+router.post("/", controller.store);
+router.use(verifyToken_1.verifyToken);
+router.get("/mysample", controller.mysample);
+router.put("/:_id", controller.update);
+router.delete("/:_id", controller.destroy);
+exports.SampleRouter = router;
