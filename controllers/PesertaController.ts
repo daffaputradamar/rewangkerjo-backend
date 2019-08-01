@@ -14,7 +14,7 @@ export class PesertaController {
   public update(req: Request, res: Response) {
     Peserta.findOneAndUpdate(
       { _id: req.params._id },
-      { $set: req.body.peserta },
+      { $set: req.body },
       { new: true },
     ).then((data) => res.json(data))
   }

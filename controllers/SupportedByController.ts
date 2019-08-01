@@ -7,9 +7,7 @@ export class SupportedByController {
   }
 
   public store(req: Request, res: Response) {
-    SupportedBy.create({ ...req.body.supportedBy }).then((data) =>
-      res.json(data),
-    )
+    SupportedBy.create({ ...req.body }).then((data) => res.json(data))
   }
 
   public destroy(req: Request, res: Response) {

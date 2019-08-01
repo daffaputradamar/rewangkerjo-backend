@@ -7,9 +7,7 @@ export class MediaPartnerController {
   }
 
   public store(req: Request, res: Response) {
-    MediaPartner.create({ ...req.body.mediaParter }).then((data) =>
-      res.json(data),
-    )
+    MediaPartner.create({ ...req.body }).then((data) => res.json(data))
   }
 
   public destroy(req: Request, res: Response) {

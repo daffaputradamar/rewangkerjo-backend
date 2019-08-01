@@ -19,7 +19,7 @@ var KontakController = /** @class */ (function () {
         Kontak_1.Kontak.find({}).then(function (data) { return res.json(data); });
     };
     KontakController.prototype.store = function (req, res) {
-        Kontak_1.Kontak.create(__assign({}, req.body.kontak)).then(function (data) { return res.json(data); });
+        Kontak_1.Kontak.create(__assign({}, req.body)).then(function (data) { return res.json(data); });
     };
     KontakController.prototype.destroy = function (req, res) {
         Kontak_1.Kontak.findOneAndDelete({ _id: req.params._id }).then(function (data) {

@@ -11,13 +11,13 @@ export class TimController {
   }
 
   public store(req: Request, res: Response) {
-    Tim.create(req.body.tim).then((data) => res.json(data))
+    Tim.create(req.body).then((data) => res.json(data))
   }
 
   public update(req: Request, res: Response) {
     Tim.findOneAndUpdate(
       { _id: req.params._id },
-      { $set: req.body.tim },
+      { $set: req.body },
       { new: true },
     ).then((data) => res.json(data))
   }

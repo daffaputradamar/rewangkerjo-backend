@@ -19,7 +19,7 @@ var TimelineController = /** @class */ (function () {
         Timeline_1.Timeline.find({}).then(function (data) { return res.json(data); });
     };
     TimelineController.prototype.store = function (req, res) {
-        Timeline_1.Timeline.create(__assign({}, req.body.timeline)).then(function (data) { return res.json(data); });
+        Timeline_1.Timeline.create(__assign({}, req.body)).then(function (data) { return res.json(data); });
     };
     TimelineController.prototype.destroy = function (req, res) {
         Timeline_1.Timeline.findOneAndDelete({ _id: req.params._id }).then(function (data) {
@@ -27,7 +27,7 @@ var TimelineController = /** @class */ (function () {
         });
     };
     TimelineController.prototype.update = function (req, res) {
-        Timeline_1.Timeline.findOneAndUpdate({ _id: req.params._id }, { $set: req.body.timeline }, { new: true }).then(function (data) { return res.json(data); });
+        Timeline_1.Timeline.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then(function (data) { return res.json(data); });
     };
     return TimelineController;
 }());

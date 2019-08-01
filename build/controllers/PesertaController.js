@@ -50,7 +50,7 @@ var PesertaController = /** @class */ (function () {
         Peserta_1.Peserta.create(req.body.peserta).then(function (data) { return res.json(data); });
     };
     PesertaController.prototype.update = function (req, res) {
-        Peserta_1.Peserta.findOneAndUpdate({ _id: req.params._id }, { $set: req.body.peserta }, { new: true }).then(function (data) { return res.json(data); });
+        Peserta_1.Peserta.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then(function (data) { return res.json(data); });
     };
     PesertaController.prototype.updateKtm = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {

@@ -19,9 +19,7 @@ var SupportedByController = /** @class */ (function () {
         SupportedBy_1.SupportedBy.find({}).then(function (data) { return res.json(data); });
     };
     SupportedByController.prototype.store = function (req, res) {
-        SupportedBy_1.SupportedBy.create(__assign({}, req.body.supportedBy)).then(function (data) {
-            return res.json(data);
-        });
+        SupportedBy_1.SupportedBy.create(__assign({}, req.body)).then(function (data) { return res.json(data); });
     };
     SupportedByController.prototype.destroy = function (req, res) {
         SupportedBy_1.SupportedBy.findOneAndDelete({ _id: req.params._id }).then(function (data) {

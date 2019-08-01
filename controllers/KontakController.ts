@@ -7,7 +7,7 @@ export class KontakController {
   }
 
   public store(req: Request, res: Response) {
-    Kontak.create({ ...req.body.kontak }).then((data) => res.json(data))
+    Kontak.create({ ...req.body }).then((data) => res.json(data))
   }
 
   public destroy(req: Request, res: Response) {

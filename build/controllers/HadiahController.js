@@ -19,7 +19,7 @@ var HadiahController = /** @class */ (function () {
         Hadiah_1.Hadiah.find({}).then(function (data) { return res.json(data); });
     };
     HadiahController.prototype.store = function (req, res) {
-        Hadiah_1.Hadiah.create(__assign({}, req.body.hadiah)).then(function (data) { return res.json(data); });
+        Hadiah_1.Hadiah.create(__assign({}, req.body)).then(function (data) { return res.json(data); });
     };
     HadiahController.prototype.destroy = function (req, res) {
         Hadiah_1.Hadiah.findOneAndDelete({ _id: req.params._id }).then(function (data) {

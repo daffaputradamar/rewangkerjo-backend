@@ -7,7 +7,7 @@ export class TimelineController {
   }
 
   public store(req: Request, res: Response) {
-    Timeline.create({ ...req.body.timeline }).then((data) => res.json(data))
+    Timeline.create({ ...req.body }).then((data) => res.json(data))
   }
 
   public destroy(req: Request, res: Response) {
@@ -19,7 +19,7 @@ export class TimelineController {
   public update(req: Request, res: Response) {
     Timeline.findOneAndUpdate(
       { _id: req.params._id },
-      { $set: req.body.timeline },
+      { $set: req.body },
       { new: true },
     ).then((data) => res.json(data))
   }

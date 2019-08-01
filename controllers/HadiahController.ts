@@ -7,7 +7,7 @@ export class HadiahController {
   }
 
   public store(req: Request, res: Response) {
-    Hadiah.create({ ...req.body.hadiah }).then((data) => res.json(data))
+    Hadiah.create({ ...req.body}).then((data) => res.json(data))
   }
 
   public destroy(req: Request, res: Response) {

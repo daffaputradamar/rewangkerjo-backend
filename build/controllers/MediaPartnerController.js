@@ -19,9 +19,7 @@ var MediaPartnerController = /** @class */ (function () {
         MediaPartner_1.MediaPartner.find({}).then(function (data) { return res.json(data); });
     };
     MediaPartnerController.prototype.store = function (req, res) {
-        MediaPartner_1.MediaPartner.create(__assign({}, req.body.mediaParter)).then(function (data) {
-            return res.json(data);
-        });
+        MediaPartner_1.MediaPartner.create(__assign({}, req.body)).then(function (data) { return res.json(data); });
     };
     MediaPartnerController.prototype.destroy = function (req, res) {
         MediaPartner_1.MediaPartner.findOneAndDelete({ id: req.params._id }).then(function (data) {
