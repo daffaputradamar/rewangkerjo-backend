@@ -18,7 +18,7 @@ export class UserController {
   public update(req: Request, res: Response) {
     User.findOneAndUpdate(
       { _id: req.params._id },
-      { $set: req.body.user },
+      { $set: req.body },
       { new: true },
     ).then((data) => res.json(data))
   }
