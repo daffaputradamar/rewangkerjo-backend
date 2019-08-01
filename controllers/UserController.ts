@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
+import * as jwt from "jsonwebtoken"
 import { User } from "../models/User"
-import { sign } from "jsonwebtoken";
 
 export class UserController {
   public index(req: Request, res: Response) {
@@ -12,7 +12,7 @@ export class UserController {
   }
 
   public store(req: Request, res: Response) {
-    User.create(req.body.user).then((data) => res.json(data))
+    User.create(req.body).then((data) => res.json(data))
   }
 
   public update(req: Request, res: Response) {
@@ -28,9 +28,17 @@ export class UserController {
   }
 
   public authenticate(req: Request, res: Response) {
-    User.find({...req.body.user}).then(user => {
-      sign({user}, `${process.env.JWT_SECRET}`)
+    User.find({ ...req.body }).then((user) => {
+      jwt.sign(
+        { user },
+        `${process.env.JWT_SECRET}`,
+        (err: any, token: any) => {
+          if (err) {
+            throw err
+          }
+          res.json({ token, user })
+        },
+      )
     })
-    .then(token => res.json({token}))
   }
 }
