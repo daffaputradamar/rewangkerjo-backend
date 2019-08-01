@@ -8,7 +8,7 @@ export class PesertaController {
   }
 
   public store(req: Request, res: Response) {
-    Peserta.create(req.body.peserta).then((data) => res.json(data))
+    Peserta.create(req.body).then((data) => res.json(data))
   }
 
   public update(req: Request, res: Response) {
