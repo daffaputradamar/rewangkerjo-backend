@@ -28,17 +28,35 @@ export class UserController {
   }
 
   public authenticate(req: Request, res: Response) {
-    User.find({ ...req.body }).then((user) => {
-      jwt.sign(
-        { user },
-        `${process.env.JWT_SECRET}`,
-        (err: any, token: any) => {
-          if (err) {
-            throw err
-          }
-          res.json({ token, user })
-        },
-      )
+    User.findOne({
+      username: req.body.username,
+      password: req.body.password,
     })
+      .then((row: any) => {
+        if (
+          req.body.username === row.username &&
+          req.body.password === row.password
+        ) {
+          const user = {
+            _id: row._id,
+            email: row.email,
+            username: row.username,
+            isAdmin: row.isAdmin,
+          }
+          jwt.sign(
+            { user },
+            `${process.env.JWT_SECRET}`,
+            (err: any, token: any) => {
+              res.json({ token, user })
+            },
+          )
+        }
+      })
+      .catch((err: any) => {
+        res.json({
+          status: "error",
+          message: "Akun tidak ditemukan",
+        })
+      })
   }
 }
