@@ -47,7 +47,7 @@ var PesertaController = /** @class */ (function () {
         Peserta_1.Peserta.findById(req.params.idteam).then(function (data) { return res.json(data); });
     };
     PesertaController.prototype.store = function (req, res) {
-        Peserta_1.Peserta.create(req.body.peserta).then(function (data) { return res.json(data); });
+        Peserta_1.Peserta.create(req.body).then(function (data) { return res.json(data); });
     };
     PesertaController.prototype.update = function (req, res) {
         Peserta_1.Peserta.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then(function (data) { return res.json(data); });

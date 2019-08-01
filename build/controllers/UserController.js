@@ -33,7 +33,7 @@ var UserController = /** @class */ (function () {
         User_1.User.create(req.body).then(function (data) { return res.json(data); });
     };
     UserController.prototype.update = function (req, res) {
-        User_1.User.findOneAndUpdate({ _id: req.params._id }, { $set: req.body.user }, { new: true }).then(function (data) { return res.json(data); });
+        User_1.User.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then(function (data) { return res.json(data); });
     };
     UserController.prototype.destroy = function (req, res) {
         User_1.User.findOneAndDelete({ _id: req.params._id }).then(function (data) { return res.json(data); });
