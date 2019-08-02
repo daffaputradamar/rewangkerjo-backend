@@ -8,6 +8,7 @@ const controller = new HadiahController()
 router.get("/", controller.index)
 router.use(verifyToken)
 router.post("/", controller.store)
+router.put("/:_id", controller.update)
 router.delete("/:_id", controller.destroy)
 
 export const HadiahRouter = router

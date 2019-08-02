@@ -8,5 +8,6 @@ var controller = new KontakController_1.KontakController();
 router.get("/", controller.index);
 router.use(verifyToken_1.verifyToken);
 router.post("/", controller.store);
+router.put("/:_id", controller.update);
 router.delete("/:_id", controller.destroy);
 exports.KontakRouter = router;

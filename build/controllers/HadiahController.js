@@ -21,6 +21,9 @@ var HadiahController = /** @class */ (function () {
     HadiahController.prototype.store = function (req, res) {
         Hadiah_1.Hadiah.create(__assign({}, req.body)).then(function (data) { return res.json(data); });
     };
+    HadiahController.prototype.update = function (req, res) {
+        Hadiah_1.Hadiah.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then(function (data) { return res.json(data); });
+    };
     HadiahController.prototype.destroy = function (req, res) {
         Hadiah_1.Hadiah.findOneAndDelete({ _id: req.params._id }).then(function (data) {
             return res.json(data);

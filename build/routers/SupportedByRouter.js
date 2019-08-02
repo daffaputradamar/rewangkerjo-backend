@@ -8,5 +8,6 @@ var controller = new SupportedByController_1.SupportedByController();
 router.get("/", controller.index);
 router.use(verifyToken_1.verifyToken);
 router.post("/", controller.store);
+router.put("/:_id", controller.update);
 router.delete("/:_id", controller.destroy);
 exports.SupportedByRouter = router;

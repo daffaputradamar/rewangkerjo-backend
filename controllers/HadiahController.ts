@@ -10,6 +10,14 @@ export class HadiahController {
     Hadiah.create({ ...req.body}).then((data) => res.json(data))
   }
 
+  public update(req: Request, res: Response){
+    Hadiah.findOneAndUpdate(
+      {_id: req.params._id},
+      { $set: req.body },
+      { new: true },
+    ).then((data) => res.json(data))
+  }
+
   public destroy(req: Request, res: Response) {
     Hadiah.findOneAndDelete({ _id: req.params._id }).then((data) =>
       res.json(data),

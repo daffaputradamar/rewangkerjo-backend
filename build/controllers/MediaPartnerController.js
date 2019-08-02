@@ -21,6 +21,9 @@ var MediaPartnerController = /** @class */ (function () {
     MediaPartnerController.prototype.store = function (req, res) {
         MediaPartner_1.MediaPartner.create(__assign({}, req.body)).then(function (data) { return res.json(data); });
     };
+    MediaPartnerController.prototype.update = function (req, res) {
+        MediaPartner_1.MediaPartner.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then(function (data) { return res.json(data); });
+    };
     MediaPartnerController.prototype.destroy = function (req, res) {
         MediaPartner_1.MediaPartner.findOneAndDelete({ id: req.params._id }).then(function (data) {
             return res.json(data);

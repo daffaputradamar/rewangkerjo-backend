@@ -21,6 +21,9 @@ var SupportedByController = /** @class */ (function () {
     SupportedByController.prototype.store = function (req, res) {
         SupportedBy_1.SupportedBy.create(__assign({}, req.body)).then(function (data) { return res.json(data); });
     };
+    SupportedByController.prototype.update = function (req, res) {
+        SupportedBy_1.SupportedBy.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then(function (data) { return res.json(data); });
+    };
     SupportedByController.prototype.destroy = function (req, res) {
         SupportedBy_1.SupportedBy.findOneAndDelete({ _id: req.params._id }).then(function (data) {
             return res.json(data);

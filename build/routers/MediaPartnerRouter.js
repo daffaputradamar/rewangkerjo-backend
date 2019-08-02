@@ -8,5 +8,6 @@ var controller = new MediaPartnerController_1.MediaPartnerController();
 router.get("/", controller.index);
 router.use(verifyToken_1.verifyToken);
 router.post("/", controller.store);
-router.delete("/:id", controller.destroy);
+router.put("/:_id", controller.update);
+router.delete("/:_id", controller.destroy);
 exports.MediaPartnerRouter = router;
