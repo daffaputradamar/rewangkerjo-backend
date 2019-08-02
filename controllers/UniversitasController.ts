@@ -1,17 +1,26 @@
-// import { Universitas } from "../models/Universitas"
-import axios from "axios"
 import { Request, Response } from "express"
+import { Universitas } from "../models/Universitas"
 
 export class UniversitasController {
   public index(req: Request, res: Response) {
-    // Universitas.find({}).then((data) => res.json(data))
-    axios.get("https://listuniv.herokuapp.com/").then((response) => {
-      let num = 1
-      const namaUniv = response.data.map((data: { name: any }) => ({
-        _id: num++,
-        nama: data.name,
-      }))
-      res.json(namaUniv)
-    })
+    Universitas.find({}).then((data) => res.json(data))
+  }
+
+  public store(req: Request, res: Response) {
+    Universitas.create({ ...req.body }).then((data) => res.json(data))
+  }
+
+  public update(req: Request, res: Response) {
+    Universitas.findOneAndUpdate(
+      { _id: req.params._id },
+      { $set: req.body },
+      { new: true },
+    ).then((data) => res.json(data))
+  }
+
+  public destroy(req: Request, res: Response) {
+    Universitas.findOneAndDelete({ _id: req.params._id }).then((data) =>
+      res.json(data),
+    )
   }
 }

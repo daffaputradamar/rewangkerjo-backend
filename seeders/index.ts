@@ -50,6 +50,6 @@ import kontakData from "./kontak"
 seed(Kontak, kontakData)
 
 // seeding Peserta
-import { Peserta } from "../models/Peserta";
+import { Peserta } from "../models/Peserta"
 import pesertaData from "./peserta"
 seed(Peserta, pesertaData)
