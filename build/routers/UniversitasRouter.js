@@ -5,4 +5,7 @@ var UniversitasController_1 = require("../controllers/UniversitasController");
 var router = express_1.Router();
 var controller = new UniversitasController_1.UniversitasController();
 router.get("/", controller.index);
+router.post("/", controller.store);
+router.put("/:_id", controller.update);
+router.delete("/:_id", controller.destroy);
 exports.UniversitasRouter = router;
