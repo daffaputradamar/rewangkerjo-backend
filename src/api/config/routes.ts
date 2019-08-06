@@ -10,6 +10,9 @@ import { TimelineRouter } from "@api/timeline/timelineRouter";
 import { UniversitasRouter } from "@api/universitas/universitasRouter";
 import { StatusRouter } from "@api/status/statusRouter";
 import { AdminRouter } from "@api/admin/adminRouter";
+import { JenisPengumpulanRouter } from "@api/jenisPengumpulan/jenisPengumpulanRouter";
+import { TimRouter } from "@api/tim/timRouter";
+import { PesertaRouter } from "@api/peserta/pesertaRouter";
 
 router.use('/supportedBy', SupportedByRouter)
 router.use('/hadiah', HadiahRouter)
@@ -19,3 +22,6 @@ router.use('/timeline', TimelineRouter)
 router.use('/universitas', UniversitasRouter)
 router.use('/status', StatusRouter)
 router.use('/admin', AdminRouter)
+router.use('/jenisPengumpulan', JenisPengumpulanRouter)
+router.use('/tim', TimRouter)
+router.use('/peserta', PesertaRouter)

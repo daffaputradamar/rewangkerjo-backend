@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const kontakController_1 = require("@api/kontak/kontakController");
-const verifyToken_1 = require("@lib/verifyToken");
+const authService_1 = require("@lib/authService");
 const router = express_1.Router();
 const controller = new kontakController_1.KontakController();
 router.get("/", controller.index);
-router.use(verifyToken_1.authenticateUser);
+router.use(authService_1.authenticateUser);
 router.post("/", controller.store);
 router.put("/:_id", controller.update);
 router.delete("/:_id", controller.destroy);

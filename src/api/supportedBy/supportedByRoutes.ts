@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { SupportedByController } from "./SupportedByController"
-import { authenticateUser } from "@lib/verifyToken"
+import { authenticateUser } from "@lib/authService"
 
 const router = Router()
 const controller = new SupportedByController()

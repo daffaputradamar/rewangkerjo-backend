@@ -7,6 +7,7 @@ const KontakSchema = new Schema({
   },
   telp: {
     type: String,
+    unique: true
   },
 })
 

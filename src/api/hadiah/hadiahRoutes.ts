@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { HadiahController } from "./HadiahController"
-import { authenticateUser } from "@lib/verifyToken"
+import { authenticateUser } from "@lib/authService"
 
 const router = Router()
 const controller = new HadiahController()

@@ -4,6 +4,7 @@ import { IStatus } from "./IStatus"
 const StatusSchema = new Schema({
   nama: {
     type: String,
+    unique: true
   }
 })
 

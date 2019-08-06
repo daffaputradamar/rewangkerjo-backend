@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const HadiahController_1 = require("./HadiahController");
-const verifyToken_1 = require("@lib/verifyToken");
+const authService_1 = require("@lib/authService");
 const router = express_1.Router();
 const controller = new HadiahController_1.HadiahController();
 router.get("/", controller.index);
-router.use(verifyToken_1.authenticateUser);
+router.use(authService_1.authenticateUser);
 router.post("/", controller.store);
 router.put("/:_id", controller.update);
 router.delete("/:_id", controller.destroy);

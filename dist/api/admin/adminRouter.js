@@ -2,14 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const adminController_1 = require("./adminController");
-const verifyToken_1 = require("@lib/verifyToken");
+const authService_1 = require("@lib/authService");
 const router = express_1.Router();
 const controller = new adminController_1.AdminController();
 router.get("/", controller.index);
 router.get("/:_id", controller.show);
 router.post("/", controller.store);
 router.post("/login", controller.authenticate);
-router.use(verifyToken_1.authenticateUser);
+router.use(authService_1.authenticateUser);
 router.put("/:_id", controller.update);
 router.delete("/:_id", controller.destroy);
 exports.AdminRouter = router;

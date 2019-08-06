@@ -7,6 +7,7 @@ const KontakSchema = new mongoose_1.Schema({
     },
     telp: {
         type: String,
+        unique: true
     },
 });
 exports.Kontak = mongoose_1.model("Kontak", KontakSchema, "Kontak");
