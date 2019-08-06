@@ -27,7 +27,8 @@ const TimSchema = new Schema({
     },
     status: {
         type: Schema.Types.ObjectId,
-        ref: "Status"
+        ref: "Status",
+        default: "5d49482087321b0017534f1b"
     },
     username: {
         type: String,
