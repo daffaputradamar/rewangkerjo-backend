@@ -19,8 +19,8 @@ export class MediaPartnerController {
   }
 
   public destroy(req: Request, res: Response) {
-    MediaPartner.findOneAndDelete({ id: req.params._id }).then((data) =>
-      res.json(data),
+    MediaPartner.findOneAndDelete({ _id: req.params._id }).then((data) =>
+      res.json(data)
     )
   }
 }
