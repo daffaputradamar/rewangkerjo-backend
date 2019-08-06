@@ -1,26 +1,25 @@
-import 'module-alias/register'
-import { config } from 'dotenv'
+import { config } from "dotenv"
+import "module-alias/register"
 config()
 
-import express, { Application, Request, Response, NextFunction } from 'express'
-import morgan from "morgan";
-import cors from 'cors'
-import router from "@config/routes";
+import router from "@config/routes"
+import cors from "cors"
+import express, { Application, NextFunction, Request, Response } from "express"
+import morgan from "morgan"
 
-import "@config/db";
+import "@config/db"
 
 const app: Application = express()
 
-app.use(morgan('tiny'))
+app.use(morgan("tiny"))
 app.use(cors())
 app.use(express.json())
 
-app.get('/', (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
     res.send("Hello")
 })
-app.use("/ktm", express.static("public/ktm"));
-app.use("/foto", express.static("public/foto"));
+app.use("/ktm", express.static("public/ktm"))
+app.use("/foto", express.static("public/foto"))
 app.use(router)
 
-
-app.listen(5000, () => console.log("Server Running"))
+app.listen(process.env.PORT || 5000, () => console.log("Server Running"))
