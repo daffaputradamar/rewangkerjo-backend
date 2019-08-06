@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const SupportedByController_1 = require("./SupportedByController");
+const universitasController_1 = require("./universitasController");
 const verifyToken_1 = require("@lib/verifyToken");
 const router = express_1.Router();
-const controller = new SupportedByController_1.SupportedByController();
+const controller = new universitasController_1.UniversitasController();
 router.get("/", controller.index);
 router.use(verifyToken_1.authenticateUser);
 router.post("/", controller.store);
 router.put("/:_id", controller.update);
 router.delete("/:_id", controller.destroy);
-exports.SupportedByRouter = router;
+exports.UniversitasRouter = router;

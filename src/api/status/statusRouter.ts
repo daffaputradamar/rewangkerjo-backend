@@ -1,9 +1,9 @@
 import { Router } from "express"
-import { SupportedByController } from "./SupportedByController"
+import { StatusController } from "./statusController"
 import { authenticateUser } from "@lib/verifyToken"
 
 const router = Router()
-const controller = new SupportedByController()
+const controller = new StatusController()
 
 router.get("/", controller.index)
 router.use(authenticateUser)
@@ -11,4 +11,4 @@ router.post("/", controller.store)
 router.put("/:_id", controller.update)
 router.delete("/:_id", controller.destroy)
 
-export const SupportedByRouter = router
+export const StatusRouter = router
