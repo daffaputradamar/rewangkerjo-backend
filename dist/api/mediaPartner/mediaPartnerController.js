@@ -12,7 +12,7 @@ class MediaPartnerController {
         mediaPartnerModel_1.MediaPartner.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then((data) => res.json(data));
     }
     destroy(req, res) {
-        mediaPartnerModel_1.MediaPartner.findOneAndDelete({ id: req.params._id }).then((data) => res.json(data));
+        mediaPartnerModel_1.MediaPartner.findOneAndDelete({ _id: req.params._id }).then((data) => res.json(data));
     }
 }
 exports.MediaPartnerController = MediaPartnerController;
