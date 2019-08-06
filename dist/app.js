@@ -15,7 +15,6 @@ const app = express_1.default();
 app.use(morgan_1.default('tiny'));
 app.use(cors_1.default());
 app.use(express_1.default.json());
-app.get('/favicon.ico', (req, res) => res.status(204));
 app.get('/', (req, res) => {
     res.send("Hello");
 });

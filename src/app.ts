@@ -15,7 +15,6 @@ app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.json())
 
-app.get('/favicon.ico', (req, res) => res.status(204));
 app.get('/', (req: Request, res: Response) => {
     res.send("Hello")
 })
