@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { HadiahController } from "./HadiahController"
+import { HadiahController } from "./hadiahController"
 import { authenticateUser } from "@lib/authService"
 
 const router = Router()

@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { SupportedByController } from "./SupportedByController"
+import { SupportedByController } from "./supportedByController"
 import { authenticateUser } from "@lib/authService"
 
 const router = Router()

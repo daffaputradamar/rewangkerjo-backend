@@ -1,6 +1,6 @@
 import { Router } from "express"
 import multer from "multer"
-import { PesertaController } from "./PesertaController"
+import { PesertaController } from "./pesertaController"
 import { authenticateUser } from "@lib/authService"
 
 const storageKtm = multer.diskStorage({

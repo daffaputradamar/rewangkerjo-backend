@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const HadiahController_1 = require("./HadiahController");
+const hadiahController_1 = require("./hadiahController");
 const authService_1 = require("@lib/authService");
 const router = express_1.Router();
-const controller = new HadiahController_1.HadiahController();
+const controller = new hadiahController_1.HadiahController();
 router.get("/", controller.index);
 router.use(authService_1.authenticateUser);
 router.post("/", controller.store);
