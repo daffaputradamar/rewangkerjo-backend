@@ -27,7 +27,8 @@ const TimSchema = new mongoose_1.Schema({
     },
     status: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: "Status"
+        ref: "Status",
+        default: "5d49482087321b0017534f1b"
     },
     username: {
         type: String,

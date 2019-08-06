@@ -39,6 +39,9 @@ export class TimController {
     const { username, password } = req.body
     let user: ITim
     Tim.findOne({ username })
+    .populate("ketua")
+    .populate("status")
+    .populate("universitas")
     .then(_user => {
         if (!_user) {
             res.json({
