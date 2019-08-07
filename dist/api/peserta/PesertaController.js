@@ -25,7 +25,9 @@ class PesertaController {
         pesertaModel_1.Peserta.findById(req.params._id).then((data) => res.json(data));
     }
     store(req, res) {
-        pesertaModel_1.Peserta.create(req.body).then((data) => res.json(data));
+        let _peserta = req.body;
+        _peserta.tim = req.params._idtim;
+        pesertaModel_1.Peserta.create(_peserta).then((data) => res.json(data));
     }
     update(req, res) {
         pesertaModel_1.Peserta.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then((data) => res.json(data));

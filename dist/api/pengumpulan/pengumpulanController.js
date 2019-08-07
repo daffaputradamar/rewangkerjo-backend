@@ -21,7 +21,20 @@ class PengumpulanController {
             .then((data) => res.json(data));
     }
     store(req, res) {
-        pengumpulanModel_1.Pengumpulan.create(Object.assign({}, req.body)).then((data) => res.json(data));
+        let _pengumpulan = req.body;
+        console.log(_pengumpulan);
+        pengumpulanModel_1.Pengumpulan.findOne({
+            jenisPengumpulan: _pengumpulan.jenisPengumpulan,
+            tim: _pengumpulan.tim
+        })
+            .then(__pengumpulan => {
+            if (!__pengumpulan) {
+                _pengumpulan.tim = req.params._idtim;
+                return pengumpulanModel_1.Pengumpulan.create(Object.assign({}, _pengumpulan));
+            }
+            return pengumpulanModel_1.Pengumpulan.findOneAndUpdate({ _id: __pengumpulan._id }, { $set: req.body }, { new: true });
+        })
+            .then((data) => res.json(data));
     }
     update(req, res) {
         pengumpulanModel_1.Pengumpulan.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then((data) => res.json(data));

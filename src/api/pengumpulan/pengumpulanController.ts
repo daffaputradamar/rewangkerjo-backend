@@ -24,8 +24,23 @@ export class PengumpulanController {
 
   public store(req: Request, res: Response) {
     let _pengumpulan = req.body
-    _pengumpulan.tim = req.params._idtim
-    Pengumpulan.create({ ..._pengumpulan}).then((data) => res.json(data))
+    console.log(_pengumpulan)
+    Pengumpulan.findOne({
+      jenisPengumpulan: _pengumpulan.jenisPengumpulan,
+      tim: _pengumpulan.tim
+    })
+    .then(__pengumpulan => {
+      if (!__pengumpulan) {
+        _pengumpulan.tim = req.params._idtim
+        return Pengumpulan.create({ ..._pengumpulan})
+      }
+      return Pengumpulan.findOneAndUpdate(
+        {_id: __pengumpulan._id},
+        { $set: req.body },
+        { new: true },
+      )
+    })
+    .then((data) => res.json(data))
   }
 
   public update(req: Request, res: Response){
