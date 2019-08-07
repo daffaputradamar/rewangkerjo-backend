@@ -23,7 +23,9 @@ export class PengumpulanController {
   }
 
   public store(req: Request, res: Response) {
-    Pengumpulan.create({ ...req.body}).then((data) => res.json(data))
+    let _pengumpulan = req.body
+    _pengumpulan.tim = req.params._idtim
+    Pengumpulan.create({ ..._pengumpulan}).then((data) => res.json(data))
   }
 
   public update(req: Request, res: Response){

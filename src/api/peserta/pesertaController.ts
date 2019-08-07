@@ -16,7 +16,9 @@ export class PesertaController {
     }
 
     public store(req: Request, res: Response) {
-        Peserta.create(req.body).then((data) => res.json(data))
+        let _peserta = req.body
+        _peserta.tim = req.params._idtim
+        Peserta.create(_peserta).then((data) => res.json(data))
     }
 
     public update(req: Request, res: Response) {
