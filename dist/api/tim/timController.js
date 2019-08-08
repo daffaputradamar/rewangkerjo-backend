@@ -24,10 +24,23 @@ class TimController {
     }
     store(req, res) {
         let _tim = req.body;
-        bcryptPassword_1.createHash(_tim.password)
-            .then(hashedPassword => {
-            _tim.password = hashedPassword;
-            timModel_1.Tim.create(Object.assign({}, _tim)).then((data) => res.json(data));
+        timModel_1.Tim.findOne({
+            username: _tim.username
+        })
+            .then(__tim => {
+            if (!__tim) {
+                bcryptPassword_1.createHash(_tim.password)
+                    .then(hashedPassword => {
+                    _tim.password = hashedPassword;
+                    timModel_1.Tim.create(Object.assign({}, _tim)).then((data) => res.json(data));
+                });
+            }
+            else {
+                res.json({
+                    success: false,
+                    message: "Username is already exist"
+                });
+            }
         });
     }
     authenticate(req, res) {

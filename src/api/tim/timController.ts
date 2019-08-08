@@ -28,11 +28,23 @@ export class TimController {
 
   public store(req: Request, res: Response) {
     let _tim = req.body
-    createHash(_tim.password)
-        .then(hashedPassword => {
-            _tim.password = hashedPassword
-            Tim.create({ ..._tim }).then((data) => res.json(data))
-        })
+    Tim.findOne({
+      username: _tim.username
+    })
+      .then(__tim => {
+        if (!__tim) {
+          createHash(_tim.password)
+              .then(hashedPassword => {
+                  _tim.password = hashedPassword
+                  Tim.create({ ..._tim }).then((data) => res.json(data))
+              })
+        } else {
+          res.json({
+            success: false,
+            message: "Username is already exist"
+          })
+        }
+      })
   }
 
   public authenticate(req: Request, res: Response) {
