@@ -25,7 +25,7 @@ class PengumpulanController {
         console.log(_pengumpulan);
         pengumpulanModel_1.Pengumpulan.findOne({
             jenisPengumpulan: _pengumpulan.jenisPengumpulan,
-            tim: _pengumpulan.tim
+            tim: req.params._idtim
         })
             .then(__pengumpulan => {
             if (!__pengumpulan) {
