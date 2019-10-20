@@ -8,7 +8,7 @@ const controller = new EmployeeController()
 router.get('/', controller.index)
 router.get('/:_id', controller.show)
 router.post('/login', controller.authenticate)
-router.post('/', controller.store)
+router.post('/', [authenticateUser, isAdmin], controller.store)
 router.put('/', authenticateUser, controller.update)
 router.delete('/:_id', [authenticateUser, isAdmin], controller.destroy)
 

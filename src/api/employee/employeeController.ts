@@ -12,6 +12,7 @@ import {
     responseBodyForbidden,
 } from '@lib/response'
 import { ObjectId } from 'bson'
+import { IAdmin } from '@api/admin/IAdmin'
 
 export class EmployeeController {
     public async index(req: Request, res: Response) {
@@ -47,17 +48,22 @@ export class EmployeeController {
     }
 
     public async store(req: Request, res: Response) {
-        let _newEmployee = forceCast<IEmployee>(req.body)
-        const _employee = await Employee.findOne({
-            username: _newEmployee.username,
-        })
-        if (_employee) {
-            responseBodyError(res, 'Username is already exist')
+        const user = req.user.data
+        if (req.isAdmin || user.position === 1) {
+            let _newEmployee = forceCast<IEmployee>(req.body)
+            const _employee = await Employee.findOne({
+                username: _newEmployee.username,
+            })
+            if (_employee) {
+                responseBodyError(res, 'Username is already exist')
+            }
+            const _password = await createHash(_newEmployee.password)
+            _newEmployee.password = _password
+            const newEmployee = await Employee.create(_newEmployee)
+            responseBody(res, newEmployee)
+        } else {
+            responseBodyForbidden(res)
         }
-        const _password = await createHash(_newEmployee.password)
-        _newEmployee.password = _password
-        const newEmployee = await Employee.create(_newEmployee)
-        responseBody(res, newEmployee)
     }
 
     public async update(req: Request, res: Response) {
