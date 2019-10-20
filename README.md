@@ -2,8 +2,6 @@
 
 Webservice for RewangKerjo application.
 
-### Version: 2.0.0
-
 ### Usage
 
 ```sh
@@ -11,7 +9,7 @@ $ npm install
 ```
 
 ```sh
-$npm run build
+$ npm run build
 
 $ npm start
 
