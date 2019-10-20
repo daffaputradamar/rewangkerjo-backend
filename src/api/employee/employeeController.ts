@@ -68,15 +68,15 @@ export class EmployeeController {
 
     public async update(req: Request, res: Response) {
         const employee = forceCast<IEmployee>(req.user.data)
-        const newEmployee = await Employee.findByIdAndUpdate(
+        const updatedEmployee = await Employee.findByIdAndUpdate(
             employee._id,
             { $set: req.body },
             { new: true }
         )
-        if (newEmployee) {
-            const token = await signJWT(newEmployee)
+        if (updatedEmployee) {
+            const token = await signJWT(updatedEmployee)
             responseBody(res, {
-                employee: newEmployee,
+                employee: updatedEmployee,
                 token,
             })
         } else {
