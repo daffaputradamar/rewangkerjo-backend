@@ -29,7 +29,7 @@ class AdminController {
             if (admin) {
                 response_1.responseBody(res, admin);
             }
-            response_1.responseBodyError(res, 'Employee not found');
+            response_1.responseBodyError(res, 'Admin not found');
         });
     }
     authenticate(req, res) {

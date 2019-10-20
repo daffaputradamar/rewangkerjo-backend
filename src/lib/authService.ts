@@ -28,6 +28,14 @@ export function isAdmin(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+export function mustAdmin(req: Request, res: Response, next: NextFunction) {
+    if (req.isAdmin) {
+        next()
+    } else {
+        res.sendStatus(403)
+    }
+}
+
 async function verifyToken(token: string) {
     const payload = await verify(token, `${process.env.JWT_SECRET}`)
     return payload

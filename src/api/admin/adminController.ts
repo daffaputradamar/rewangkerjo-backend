@@ -26,7 +26,7 @@ export class AdminController {
         if (admin) {
             responseBody(res, admin)
         }
-        responseBodyError(res, 'Employee not found')
+        responseBodyError(res, 'Admin not found')
     }
 
     public async authenticate(req: Request, res: Response) {

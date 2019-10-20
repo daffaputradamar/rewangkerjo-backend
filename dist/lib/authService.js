@@ -35,6 +35,15 @@ function isAdmin(req, res, next) {
     }
 }
 exports.isAdmin = isAdmin;
+function mustAdmin(req, res, next) {
+    if (req.isAdmin) {
+        next();
+    }
+    else {
+        res.sendStatus(403);
+    }
+}
+exports.mustAdmin = mustAdmin;
 function verifyToken(token) {
     return __awaiter(this, void 0, void 0, function* () {
         const payload = yield jsonwebtoken_1.verify(token, `${process.env.JWT_SECRET}`);
