@@ -1,18 +1,16 @@
-import { connect } from "mongoose"
+import { connect } from 'mongoose'
 
-const connectionString = `mongodb+srv://${process.env.DB_USER}:${
-  process.env.DB_PASS
-}@cluster0-enygr.mongodb.net/test?retryWrites=true`
+const connectionString = `mongodb://localhost:27017/rewangid`
 
 connect(
-  connectionString,
-  {
-    useNewUrlParser: true,
-  },
+    connectionString,
+    {
+        useNewUrlParser: true,
+    }
 )
-  .then(() => {
-    console.log("Connected to mongodb")
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+    .then(() => {
+        console.log('Connected to mongodb')
+    })
+    .catch(err => {
+        console.log(err)
+    })

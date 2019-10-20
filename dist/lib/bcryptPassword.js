@@ -17,7 +17,7 @@ function createHash(password) {
         const salt = yield bcryptjs_1.default.genSalt(10);
         const hash = yield bcryptjs_1.default.hash(password, salt);
         resolve(hash);
-        reject(new Error("Error creating Hash"));
+        reject(new Error('Error creating Hash'));
     }));
 }
 exports.createHash = createHash;
@@ -25,7 +25,7 @@ function isPasswordMatch(password, hashedPassword) {
     return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
         let isMatch = yield bcryptjs_1.default.compare(password, hashedPassword);
         resolve(isMatch);
-        reject(new Error("Error mathcing password"));
+        reject(new Error('Error mathcing password'));
     }));
 }
 exports.isPasswordMatch = isPasswordMatch;

@@ -1,18 +1,9 @@
-import { model, Schema } from "mongoose"
-import { IAdmin } from "./IAdmin"
+import { model, Schema } from 'mongoose'
+import { IAdmin } from './IAdmin'
 
 const AdminSchema = new Schema({
-  username: {
-    type: String,
-    unique: true
-  },
-  password: {
-    type: String,
-  },
+    username: String,
+    password: String,
 })
 
-export const Admin = model<IAdmin>(
-  "Admin",
-  AdminSchema,
-  "Admin",
-)
+export const Admin = model<IAdmin>('Admin', AdminSchema)

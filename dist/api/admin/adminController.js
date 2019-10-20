@@ -1,64 +1,85 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const adminModel_1 = require("./adminModel");
-const bcryptPassword_1 = require("@lib/bcryptPassword");
 const signJWT_1 = require("@lib/signJWT");
+const bcryptPassword_1 = require("@lib/bcryptPassword");
+const forceCast_1 = require("@lib/forceCast");
+const response_1 = require("@lib/response");
+const bson_1 = require("bson");
 class AdminController {
     index(req, res) {
-        adminModel_1.Admin.find({}).then((data) => res.json(data));
+        return __awaiter(this, void 0, void 0, function* () {
+            res.json(yield adminModel_1.Admin.find());
+        });
     }
     show(req, res) {
-        adminModel_1.Admin.findById(req.params._id).then((data) => res.json(data));
-    }
-    store(req, res) {
-        let _admin = req.body;
-        bcryptPassword_1.createHash(_admin.password)
-            .then(hashedPassword => {
-            _admin.password = hashedPassword;
-            adminModel_1.Admin.create(Object.assign({}, _admin)).then((data) => res.json(data));
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!bson_1.ObjectId.isValid(req.params._id)) {
+                response_1.responseBodyError(res, 'Invalid Id');
+            }
+            const admin = yield adminModel_1.Admin.findById(req.params._id);
+            if (admin) {
+                response_1.responseBody(res, admin);
+            }
+            response_1.responseBodyError(res, 'Employee not found');
         });
     }
     authenticate(req, res) {
-        const { username, password } = req.body;
-        let user;
-        adminModel_1.Admin.findOne({ username })
-            .then(_user => {
-            if (!_user) {
-                res.json({
-                    success: false,
-                    error: "Username is not found"
-                });
-            }
-            const __user = _user;
-            user = __user;
-            return bcryptPassword_1.isPasswordMatch(password, user.password);
-        })
-            .then(isMatch => {
-            if (isMatch) {
-                return signJWT_1.signJWT(user);
+        return __awaiter(this, void 0, void 0, function* () {
+            const _auth = forceCast_1.forceCast(req.body);
+            const admin = yield adminModel_1.Admin.findOne({
+                username: _auth.username,
+            });
+            if (admin) {
+                if (yield bcryptPassword_1.isPasswordMatch(_auth.password, admin.password)) {
+                    const token = yield signJWT_1.signJWT(admin);
+                    response_1.responseBody(res, token);
+                }
+                else {
+                    response_1.responseBodyError(res, 'Password is Wrong');
+                }
             }
             else {
-                res.json({
-                    success: false,
-                    error: "Password does not match"
-                });
+                response_1.responseBodyError(res, 'Username is not Found');
             }
-        })
-            .then(token => {
-            res.json({
-                success: true,
-                token
-            });
-        })
-            .catch(err => {
-            throw err;
         });
     }
-    update(req, res) {
-        adminModel_1.Admin.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true }).then((data) => res.json(data));
+    store(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let _newAdmin = forceCast_1.forceCast(req.body);
+            const _admin = yield adminModel_1.Admin.findOne({
+                username: _newAdmin.username,
+            });
+            if (_admin) {
+                response_1.responseBodyError(res, 'Username is already exist');
+            }
+            const _password = yield bcryptPassword_1.createHash(_newAdmin.password);
+            _newAdmin.password = _password;
+            const newAdmin = yield adminModel_1.Admin.create(_newAdmin);
+            response_1.responseBody(res, newAdmin);
+        });
     }
     destroy(req, res) {
-        adminModel_1.Admin.findOneAndDelete({ _id: req.params._id }).then((data) => res.json(data));
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!bson_1.ObjectId.isValid(req.params._id)) {
+                response_1.responseBodyError(res, 'Invalid Id');
+            }
+            if (req.isAdmin) {
+                const deletedAdmin = yield adminModel_1.Admin.findByIdAndDelete(req.params._id);
+                response_1.responseBody(res, deletedAdmin);
+            }
+            else {
+                response_1.responseBodyForbidden(res);
+            }
+        });
     }
 }
 exports.AdminController = AdminController;

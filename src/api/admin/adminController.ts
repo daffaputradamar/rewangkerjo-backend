@@ -1,75 +1,74 @@
-import { Request, Response } from "express"
-import { Admin } from "./adminModel"
-import { IAdmin } from "./IAdmin";
+import { Request, Response } from 'express'
+import { Admin } from './adminModel'
+import { IAdmin } from './IAdmin'
+import { IUser } from '@config/interfaces/IUser'
 
-import { isPasswordMatch, createHash } from "@lib/bcryptPassword";
-import { signJWT } from "@lib/signJWT";
+import { signJWT } from '@lib/signJWT'
+import { isPasswordMatch, createHash } from '@lib/bcryptPassword'
+import { forceCast } from '@lib/forceCast'
+import {
+    responseBody,
+    responseBodyError,
+    responseBodyForbidden,
+} from '@lib/response'
+import { ObjectId } from 'bson'
 
 export class AdminController {
-  public index(req: Request, res: Response) {
-    Admin.find({}).then((data) => res.json(data))
-  }
+    public async index(req: Request, res: Response) {
+        res.json(await Admin.find())
+    }
 
-  public show(req: Request, res: Response) {
-    Admin.findById(req.params._id).then((data) => res.json(data))
-  }
-
-  public store(req: Request, res: Response) {
-    let _admin = req.body
-    createHash(_admin.password)
-        .then(hashedPassword => {
-            _admin.password = hashedPassword
-            Admin.create({ ..._admin }).then((data) => res.json(data))
-        })
-  }
-
-  public authenticate(req: Request, res: Response) {
-    const { username, password } = req.body
-    let user: IAdmin
-    Admin.findOne({ username })
-    .then(_user => {
-        if (!_user) {
-            res.json({
-                success: false,
-                error: "Username is not found"
-            })
+    public async show(req: Request, res: Response) {
+        if (!ObjectId.isValid(req.params._id)) {
+            responseBodyError(res, 'Invalid Id')
         }
-        const __user = _user as IAdmin
-        user = __user
-        return isPasswordMatch(password, user.password)
-    })
-    .then(isMatch => {
-        if (isMatch) {
-            return signJWT(user)
+        const admin = await Admin.findById(req.params._id)
+        if (admin) {
+            responseBody(res, admin)
+        }
+        responseBodyError(res, 'Employee not found')
+    }
+
+    public async authenticate(req: Request, res: Response) {
+        const _auth = forceCast<IUser>(req.body)
+        const admin = await Admin.findOne({
+            username: _auth.username,
+        })
+        if (admin) {
+            if (await isPasswordMatch(_auth.password, admin.password)) {
+                const token = await signJWT(admin)
+                responseBody(res, token)
+            } else {
+                responseBodyError(res, 'Password is Wrong')
+            }
         } else {
-            res.json({
-                success: false,
-                error: "Password does not match"
-            })
+            responseBodyError(res, 'Username is not Found')
         }
-    })
-    .then(token => {
-        res.json({
-            success: true,
-            token
+    }
+
+    public async store(req: Request, res: Response) {
+        let _newAdmin = forceCast<IAdmin>(req.body)
+        const _admin = await Admin.findOne({
+            username: _newAdmin.username,
         })
-    })
-    .catch(err => {
-        throw err
-    })
-  }
+        if (_admin) {
+            responseBodyError(res, 'Username is already exist')
+        }
+        const _password = await createHash(_newAdmin.password)
+        _newAdmin.password = _password
+        const newAdmin = await Admin.create(_newAdmin)
+        responseBody(res, newAdmin)
+    }
 
-  public update(req: Request, res: Response) {
-    Admin.findOneAndUpdate(
-      { _id: req.params._id },
-      { $set: req.body },
-      { new: true },
-    ).then((data) => res.json(data))
-  }
-
-  public destroy(req: Request, res: Response) {
-    Admin.findOneAndDelete({ _id: req.params._id }).then((data) =>
-      res.json(data),
-    )
-  }
+    public async destroy(req: Request, res: Response) {
+        if (!ObjectId.isValid(req.params._id)) {
+            responseBodyError(res, 'Invalid Id')
+        }
+        if (req.isAdmin) {
+            const deletedAdmin = await Admin.findByIdAndDelete(req.params._id)
+            responseBody(res, deletedAdmin)
+        } else {
+            responseBodyForbidden(res)
+        }
+    }
 }

@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-enygr.mongodb.net/test?retryWrites=true`;
+const connectionString = `mongodb://localhost:27017/rewangid`;
 mongoose_1.connect(connectionString, {
     useNewUrlParser: true,
 })
     .then(() => {
-    console.log("Connected to mongodb");
+    console.log('Connected to mongodb');
 })
-    .catch((err) => {
+    .catch(err => {
     console.log(err);
 });

@@ -11,9 +11,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = require("jsonwebtoken");
 function signJWT(payload) {
     return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
-        const token = yield jsonwebtoken_1.sign({ data: payload }, `${process.env.JWT_SECRET}`, { expiresIn: '1d' });
+        const token = yield jsonwebtoken_1.sign({ data: payload }, `${process.env.JWT_SECRET}`);
         resolve(token);
-        reject(new Error("Error signing JWT"));
+        reject(new Error('Error signing JWT'));
     }));
 }
 exports.signJWT = signJWT;

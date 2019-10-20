@@ -11,11 +11,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = require("jsonwebtoken");
 function authenticateUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const bearerHeader = req.headers["authorization"];
-        if (typeof bearerHeader !== "undefined") {
-            const bearer = bearerHeader.split(" ");
+        const bearerHeader = req.headers['authorization'];
+        if (typeof bearerHeader !== 'undefined') {
+            const bearer = bearerHeader.split(' ');
             const bearerToken = bearer[1];
             req.user = yield verifyToken(bearerToken);
+            req.isAdmin = false;
             next();
         }
         else {
@@ -24,10 +25,19 @@ function authenticateUser(req, res, next) {
     });
 }
 exports.authenticateUser = authenticateUser;
+function isAdmin(req, res, next) {
+    if (req.user.data.name === undefined) {
+        req.isAdmin = true;
+        next();
+    }
+    else {
+        next();
+    }
+}
+exports.isAdmin = isAdmin;
 function verifyToken(token) {
-    return new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
+    return __awaiter(this, void 0, void 0, function* () {
         const payload = yield jsonwebtoken_1.verify(token, `${process.env.JWT_SECRET}`);
-        resolve(payload);
-        reject(new Error("Error verifying token"));
-    }));
+        return payload;
+    });
 }

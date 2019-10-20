@@ -12,13 +12,11 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 require("@config/db");
 const app = express_1.default();
-app.use(morgan_1.default("tiny"));
+app.use(morgan_1.default('tiny'));
 app.use(cors_1.default());
 app.use(express_1.default.json());
-app.get("/", (req, res) => {
-    res.send("Hello");
+app.get('/', (req, res) => {
+    res.send('Hello');
 });
-app.use("/ktm", express_1.default.static("public/ktm"));
-app.use("/foto", express_1.default.static("public/foto"));
 app.use(routes_1.default);
-app.listen(process.env.PORT || 5000, () => console.log("Server Running"));
+app.listen(process.env.PORT || 5000, () => console.log('Server Running'));
