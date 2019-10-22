@@ -10,4 +10,9 @@ const EmployeeSchema = new Schema({
     position: Number,
 })
 
+EmployeeSchema.pre('remove', function(next) {
+    const employee = this
+    employee.model('Event').deleteOne({ committees: employee._id }, next)
+})
+
 export const Employee = model<IEmployee>('Employee', EmployeeSchema)

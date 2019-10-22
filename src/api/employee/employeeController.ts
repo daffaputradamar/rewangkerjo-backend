@@ -26,8 +26,9 @@ export class EmployeeController {
         const employee = await Employee.findById(req.params._id)
         if (employee) {
             responseBody(res, employee)
+        } else {
+            responseBodyError(res, 'Employee not found')
         }
-        responseBodyError(res, 'Employee not found')
     }
 
     public async authenticate(req: Request, res: Response) {
@@ -90,7 +91,7 @@ export class EmployeeController {
         if (!ObjectId.isValid(req.params._id)) {
             responseBodyError(res, 'Invalid Id')
         }
-        if (req.isAdmin) {
+        if (req.isAdmin || req.user.data.position === 1) {
             const deletedEmployee = await Employee.findByIdAndDelete(
                 req.params._id
             )
