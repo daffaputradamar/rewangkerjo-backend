@@ -37,7 +37,7 @@ export class AdminController {
         if (admin) {
             if (await isPasswordMatch(_auth.password, admin.password)) {
                 const token = await signJWT(admin)
-                responseBody(res, token)
+                responseBody(res, { token })
             } else {
                 responseBodyError(res, 'Password is Wrong')
             }

@@ -1,10 +1,7 @@
 import { Response } from 'express'
 
 export function responseBody(res: Response, data: any) {
-    return res.json({
-        success: true,
-        data,
-    })
+    return res.json(data)
 }
 
 export function responseBodyError(res: Response, message: string) {

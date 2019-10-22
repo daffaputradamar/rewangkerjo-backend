@@ -41,7 +41,7 @@ class AdminController {
             if (admin) {
                 if (yield bcryptPassword_1.isPasswordMatch(_auth.password, admin.password)) {
                     const token = yield signJWT_1.signJWT(admin);
-                    response_1.responseBody(res, token);
+                    response_1.responseBody(res, { token });
                 }
                 else {
                     response_1.responseBodyError(res, 'Password is Wrong');

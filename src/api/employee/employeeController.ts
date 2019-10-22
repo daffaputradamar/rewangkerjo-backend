@@ -38,7 +38,9 @@ export class EmployeeController {
         if (employee) {
             if (await isPasswordMatch(_auth.password, employee.password)) {
                 const token = await signJWT(employee)
-                responseBody(res, token)
+                responseBody(res, {
+                    token,
+                })
             } else {
                 responseBodyError(res, 'Password is Wrong')
             }
