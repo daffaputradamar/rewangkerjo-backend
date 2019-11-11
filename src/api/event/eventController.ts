@@ -5,6 +5,15 @@ import { IEvent } from './IEvent'
 import { forceCast } from '@lib/forceCast'
 import { responseBody, responseBodyError } from '@lib/response'
 import { ObjectId } from 'bson'
+import { Assignment } from '@api/assignment/assignmentModel'
+import { Employee } from '@api/employee/employeeModel'
+import { IAssignment } from '@api/assignment/IAssignment'
+
+const removeAssignment = async (filter: object): Promise<IAssignment[]> => {
+    const deletedAssignment = await Assignment.find(filter)
+    await Assignment.deleteMany(filter)
+    return deletedAssignment
+}
 
 export class EventController {
     public async index(req: Request, res: Response) {
@@ -20,6 +29,12 @@ export class EventController {
             .populate('pic')
             .populate('category')
             .populate('vendors')
+            .populate({
+                path: 'assignments',
+                populate: {
+                    path: 'employee',
+                },
+            })
             .exec()
         responseBody(res, event)
     }
@@ -44,6 +59,29 @@ export class EventController {
             responseBodyError(res, 'Invalid Id')
         }
         const deletedEvent = await Event.findByIdAndDelete(req.params._id)
+
+        if (deletedEvent) {
+            const deletedAssignment = await removeAssignment({
+                event: deletedEvent._id,
+            })
+            const deletedAssignmentIds = deletedAssignment.map(
+                assignment => assignment._id
+            )
+            const updatedEmployee = await Employee.updateMany(
+                {
+                    assignments: {
+                        $in: deletedAssignmentIds,
+                    },
+                },
+                {
+                    $pull: {
+                        assignments: {
+                            $in: deletedAssignmentIds,
+                        },
+                    },
+                }
+            )
+        }
         responseBody(res, deletedEvent)
     }
 }

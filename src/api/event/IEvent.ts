@@ -12,7 +12,7 @@ export interface IEvent extends Document {
     committees?: string[] | IEmployee[]
     vendors?: string[] | IVendor[]
     isFinished: boolean
-    assignments?: IAssignment[]
+    assignments: string[] | IAssignment[]
     createdAt: Date
 }
 

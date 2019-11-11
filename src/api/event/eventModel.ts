@@ -29,18 +29,12 @@ const EventSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    assignments: {
-        type: [
-            {
-                assignment: String,
-                isFinished: {
-                    type: Boolean,
-                    default: false,
-                },
-            },
-        ],
-        default: [],
-    },
+    assignments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Assignment',
+        },
+    ],
     createdAt: {
         type: Date,
         default: Date.now(),

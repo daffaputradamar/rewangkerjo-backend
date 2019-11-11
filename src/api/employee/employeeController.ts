@@ -11,8 +11,13 @@ import {
     responseBodyError,
     responseBodyForbidden,
 } from '@lib/response'
+import { Types } from 'mongoose'
 import { ObjectId } from 'bson'
 import { IAdmin } from '@api/admin/IAdmin'
+import { Event } from '@api/event/eventModel'
+import { Assignment } from '@api/assignment/assignmentModel'
+
+const ObjectIdMongoose = Types.ObjectId
 
 export class EmployeeController {
     public async index(req: Request, res: Response) {
@@ -23,7 +28,15 @@ export class EmployeeController {
         if (!ObjectId.isValid(req.params._id)) {
             responseBodyError(res, 'Invalid Id')
         }
-        const employee = await Employee.findById(req.params._id)
+        const employee = await Employee.findById(req.params._id).populate({
+            path: 'assignments',
+            populate: {
+                path: 'event',
+                populate: {
+                    path: 'category',
+                },
+            },
+        })
         if (employee) {
             responseBody(res, employee)
         } else {
@@ -96,6 +109,20 @@ export class EmployeeController {
                 req.params._id
             )
             responseBody(res, deletedEmployee)
+
+            if (deletedEmployee) {
+                const updatedEvent = await Event.updateMany(
+                    { committees: req.params._id },
+                    {
+                        $pull: {
+                            committees: new ObjectIdMongoose(req.params._id),
+                        },
+                    }
+                )
+                const deletedAssignment = await Assignment.deleteMany({
+                    employee: deletedEmployee._id,
+                })
+            }
         } else {
             responseBodyForbidden(res)
         }

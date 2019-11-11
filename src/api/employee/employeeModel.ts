@@ -8,11 +8,12 @@ const EmployeeSchema = new Schema({
     address: String,
     phone: String,
     position: Number,
-})
-
-EmployeeSchema.pre('remove', function(next) {
-    const employee = this
-    employee.model('Event').deleteOne({ committees: employee._id }, next)
+    assignments: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Assignment',
+        },
+    ],
 })
 
 export const Employee = model<IEmployee>('Employee', EmployeeSchema)
