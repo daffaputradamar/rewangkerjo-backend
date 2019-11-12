@@ -5,6 +5,10 @@ import { IVendor } from './IVendor'
 import { forceCast } from '@lib/forceCast'
 import { responseBody, responseBodyError } from '@lib/response'
 import { ObjectId } from 'bson'
+import { Types } from 'mongoose'
+import { Event } from '@api/event/eventModel'
+
+const ObjectIdMongoose = Types.ObjectId
 
 export class VendorController {
     public async index(req: Request, res: Response) {
@@ -39,6 +43,18 @@ export class VendorController {
             responseBodyError(res, 'Invalid Id')
         }
         const deletedVendor = await Vendor.findByIdAndDelete(req.params._id)
+
         responseBody(res, deletedVendor)
+
+        if (deletedVendor) {
+            const updatedEvent = await Event.updateMany(
+                { vendors: req.params._id },
+                {
+                    $pull: {
+                        vendors: new ObjectIdMongoose(req.params._id),
+                    },
+                }
+            )
+        }
     }
 }
