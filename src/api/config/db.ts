@@ -1,6 +1,7 @@
 import { connect } from 'mongoose'
 
-const connectionString = `mongodb://localhost:27017/rewangid`
+const connectionString = `mongodb+srv://rewangkerjo:rewangkerjo@cluster0-vgbi2.mongodb.net/test?retryWrites=true&w=majority
+`
 
 connect(
     connectionString,
