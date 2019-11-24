@@ -7,6 +7,7 @@ import { responseBody, responseBodyError } from '@lib/response'
 import { Types } from 'mongoose'
 import { Employee } from '@api/employee/employeeModel'
 import { Event } from '@api/event/eventModel'
+import { Notification } from '@api/notification/notificationModel'
 
 const ObjectIdMongoose = Types.ObjectId
 
@@ -46,6 +47,12 @@ export class AssignmentController {
             await updateEvent.save()
         }
         responseBody(res, newAssignment)
+        await Notification.create({
+            type: 2,
+            idReference: _newAssignment.employee,
+            user: _newAssignment.employee,
+            message: 'Anda memiliki tugas baru',
+        })
     }
 
     public async update(req: Request, res: Response) {

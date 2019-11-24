@@ -7,4 +7,5 @@ export interface IAssignment extends Document {
     isFinished: boolean
     employee: string | IEmployee
     event: string | IEvent
+    deadline: Date
 }
