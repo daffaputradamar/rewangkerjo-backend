@@ -12,6 +12,9 @@ const AssignmentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Event',
     },
+    deadline: {
+        type: Date,
+    },
 })
 
 export const Assignment = model<IAssignment>('Assignment', AssignmentSchema)

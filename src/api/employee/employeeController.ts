@@ -100,6 +100,29 @@ export class EmployeeController {
         }
     }
 
+    public async resetPassword(req: Request, res: Response) {
+        if (!ObjectId.isValid(req.params._id)) {
+            responseBodyError(res, 'Invalid Id')
+        }
+        if (req.isAdmin) {
+            const _newPassword = req.body.password
+            const password = await createHash(_newPassword)
+
+            const updatedEmployee = await Employee.findByIdAndUpdate(
+                req.params._id,
+                { password },
+                { new: true }
+            )
+            if (updatedEmployee) {
+                responseBody(res, updatedEmployee)
+            } else {
+                responseBodyError(res, 'User is not found')
+            }
+        } else {
+            responseBodyForbidden(res)
+        }
+    }
+
     public async destroy(req: Request, res: Response) {
         if (!ObjectId.isValid(req.params._id)) {
             responseBodyError(res, 'Invalid Id')
